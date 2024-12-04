@@ -8,11 +8,15 @@ import Cart from "./pages/Cart";
 import ErrorPage from "./pages/ErrorPage";
 import ProductsInfo from "./pages/ProductsInfo";
 import Block from "./pages/Block";
+import Sign from "./pages/Sign";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <div>
       <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/sign" element={<Sign />} />
         <Route
           path="/block"
           element={

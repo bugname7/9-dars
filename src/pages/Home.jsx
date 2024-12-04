@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import homeImg from "../images/homeImg.png";
 import { Link, useNavigate } from "react-router-dom";
+import Sign from "./Sign";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -28,6 +29,7 @@ function Home() {
   }
   return (
     <div>
+      
       <aside className="w-[1050px] mb-60 items-start mx-auto flex justify-between gap-9 mt-16">
         <div className="">
           <h3 className="w-[500px] mt-5 mb-8 font-bold text-6xl text-blue-950 opacity-80">
