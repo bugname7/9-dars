@@ -7,11 +7,20 @@ import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import ErrorPage from "./pages/ErrorPage";
 import ProductsInfo from "./pages/ProductsInfo";
+import Block from "./pages/Block";
 
 function App() {
   return (
     <div>
       <Routes>
+        <Route
+          path="/block"
+          element={
+            <MainLayout>
+              <Block />
+            </MainLayout>
+          }
+        />
         <Route
           index
           element={
