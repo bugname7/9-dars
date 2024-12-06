@@ -18,8 +18,9 @@ function Products() {
         console.log(error);
       });
   }, []);
+
   function handleSearch(id) {
-    navigate(`/products/${id}`)
+    navigate(`/products/${id}`);
   }
 
   return (
@@ -129,27 +130,30 @@ function Products() {
       </div>
       <div className="w-[1100px] rounded mx-auto p-6 mt-16 flex flex-wrap justify-between gap-6">
         {products.length > 0 &&
-          products.map((product, index) => (
-            <div
-              onClick={() => {
-                handleSearch(product.id);
-              }}
-              className="text-center shadow-md hover:shadow-xl p-4 h-[280px] cursor-pointer items-center rounded-lg w-[330px] bg-white"
-              key={index}
-            >
-              <img
-                src={product.attributes.image}
-                className="w-full h-[150px] rounded-xl object-cover mb-9"
-                alt={product.attributes.title}
-              />
-              <h3 className="text-2xl tracking-[1px] font-semibold text-teal-900 text-opacity-90">
-                {product.attributes.title}
-              </h3>
-              <span className="tracking-[2px] text-sky-800">
-                {product.attributes.price}$
-              </span>
-            </div>
-          ))}
+          products.map((product, index) => {
+            const price = (product.attributes.price / 100).toFixed(2); 
+            return (
+              <div
+                onClick={() => {
+                  handleSearch(product.id);
+                }}
+                className="text-center shadow-md hover:shadow-xl p-4 h-[280px] cursor-pointer items-center rounded-lg w-[330px] bg-white"
+                key={index}
+              >
+                <img
+                  src={product.attributes.image}
+                  className="w-full h-[150px] rounded-xl object-cover mb-9"
+                  alt={product.attributes.title}
+                />
+                <h3 className="text-2xl tracking-[1px] font-semibold text-teal-900 text-opacity-90">
+                  {product.attributes.title}
+                </h3>
+                <span className="tracking-[2px] text-sky-800">
+                  {price}$
+                </span>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

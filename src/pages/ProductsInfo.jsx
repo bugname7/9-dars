@@ -4,6 +4,8 @@ import axios from "axios";
 
 function ProductsInfo() {
   const [product, setProduct] = useState({});
+  const [message, setMessage] = useState("");
+  const [ErrMessage, setErrMessage] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -11,20 +13,40 @@ function ProductsInfo() {
     axios
       .get(`https://strapi-store-server.onrender.com/api/products/${id}`)
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           setProduct(response.data.data);
         }
       })
       .catch((error) => {
         console.log(error);
-        if (error.status == 404) {
+        if (error.status === 404) {
           navigate("/products");
         }
-        if (error.status == 500) {
+        if (error.status === 500) {
           navigate("/block");
         }
       });
   }, [id]);
+
+  const saveBag = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    setMessage("Mahsulot Cart bo'limiga saqalandi!");
+
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  };
+
+  function handleDb() {
+    setErrMessage("Mahsulotni avval saqlagansiz ");
+    setTimeout(() => {
+      setErrMessage("");
+    }, 3000);
+  }
+  const priceHalf = product?.attributes?.price / 100;
 
   return (
     product.id && (
@@ -51,7 +73,7 @@ function ProductsInfo() {
                 {product.attributes.company}
               </span>
               <h5 className="mt-3 mb-8 text-2xl text-black text-opacity-60 ">
-                {product.attributes.price}$
+                {priceHalf}$
               </h5>
               <p className="space-x-4 tracking-loose mb-8 text-black text-opacity-80 leading-[30px]">
                 {product.attributes.description}
@@ -94,12 +116,25 @@ function ProductsInfo() {
                   <option>20</option>
                 </select>
               </form>
-              <Link
-                to={"/cart"}
+
+              <button
+                onClick={saveBag}
+                onDoubleClick={handleDb}
                 className="bg-blue-800  text-white text-opacity-70 p-4 rounded-xl"
               >
                 ADD TO BAG
-              </Link>
+              </button>
+
+              {message && (
+                <div className="mt-4  border-2 p-3 w-72 rounded-xl text-green-500 font-semibold">
+                  {message}
+                </div>
+              )}
+              {ErrMessage && (
+                <div className="mt-4  border-2 p-3 w-72 bg-black rounded-xl text-red-600 font-semibold">
+                  {ErrMessage}
+                </div>
+              )}
             </div>
           </div>
         </div>

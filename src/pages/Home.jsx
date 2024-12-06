@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import homeImg from "../images/homeImg.png";
 import { Link, useNavigate } from "react-router-dom";
-import Sign from "./Sign";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -27,9 +26,11 @@ function Home() {
       navigate(`/products/${id}`);
     }
   }
+
+  const priceHalf = (price) => price / 100;
+
   return (
     <div>
-      
       <aside className="w-[1050px] mb-60 items-start mx-auto flex justify-between gap-9 mt-16">
         <div className="">
           <h3 className="w-[500px] mt-5 mb-8 font-bold text-6xl text-blue-950 opacity-80">
@@ -77,7 +78,7 @@ function Home() {
                 {product.attributes.title}
               </h3>
               <span className="tracking-[2px] text-sky-800">
-                {product.attributes.price}$
+                {priceHalf(product.attributes.price)}$
               </span>
             </div>
           ))}
