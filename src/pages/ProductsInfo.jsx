@@ -94,9 +94,12 @@ function ProductsInfo() {
                   <option>20</option>
                 </select>
               </form>
-              <button className="bg-blue-800 text-white text-opacity-70 p-4 rounded-xl">
+              <Link
+                to={"/cart"}
+                className="bg-blue-800  text-white text-opacity-70 p-4 rounded-xl"
+              >
                 ADD TO BAG
-              </button>
+              </Link>
             </div>
           </div>
         </div>

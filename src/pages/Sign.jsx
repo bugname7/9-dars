@@ -2,15 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Sign() {
-  const [email, setEmail] = useState("");
-  const [passwd, setPasswd] = useState("");
-
-  function handleAlert(event) {
-    event.preventDefault();
-    setEmail("");
-    setp("");
-    alert("malumotlar toliq emas");
-  }
   return (
     <div>
       <div className="bg-white rounded-xl w-[380px] shadow-2xl mt-32 mx-auto items-center  p-5">
@@ -23,9 +14,6 @@ function Sign() {
           </label>
           <br />
           <input
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
             type="email"
             className="mt-2 w-full  p-3 rounded-xl border-solid border-2 focus:border-4 outline-none border-gray-300 mb-6 0"
             id="email"
@@ -36,9 +24,6 @@ function Sign() {
           </label>
           <br />
           <input
-            onChange={(e) => {
-              setPasswd(e.target.value);
-            }}
             type="text"
             id="passwd"
             className="mt-2 w-full p-3 rounded-xl border-solid border-2 focus:border-4 outline-none border-gray-300 mb-6 "
